@@ -2193,16 +2193,16 @@ class CoursesService {
     return this.http.get(`/api/course-categories`).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_0__.map)(res => res["categories"]));
   }
   findAllCourses() {
-    return this.http.get('/api/courses').pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_0__.map)(res => res['payload']));
+    return this.http.get("/api/courses").pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_0__.map)(res => res["payload"]));
   }
   findAllCourseLessons(courseId) {
-    return this.http.get('/api/lessons', {
-      params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpParams().set('courseId', courseId.toString()).set('pageNumber', "0").set('pageSize', "1000")
+    return this.http.get("/api/lessons", {
+      params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpParams().set("courseId", courseId.toString()).set("pageNumber", "0").set("pageSize", "1000")
     }).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_0__.map)(res => res["payload"]));
   }
-  findLessons(courseId, filter = '', sortOrder = 'asc', pageNumber = 0, pageSize = 3) {
-    return this.http.get('/api/lessons', {
-      params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpParams().set('courseId', courseId.toString()).set('filter', filter).set('sortOrder', sortOrder).set('pageNumber', pageNumber.toString()).set('pageSize', pageSize.toString())
+  findLessons(courseId, filter = "", sortOrder = "asc", pageNumber = 0, pageSize = 3) {
+    return this.http.get("/api/lessons", {
+      params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpParams().set("courseId", courseId.toString()).set("filter", filter).set("sortOrder", sortOrder).set("pageNumber", pageNumber.toString()).set("pageSize", pageSize.toString())
     }).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_0__.map)(res => res["payload"]));
   }
   static #_ = this.ɵfac = function CoursesService_Factory(t) {
