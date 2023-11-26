@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 
 @Component({
@@ -8,6 +8,24 @@ import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['create-course-step-3.component.scss']
 })
 export class CreateCourseStep3Component {
+  form = new FormGroup({
+    lessons: new FormArray([])
+  })
 
+  get lessons() {
+    return this.form.controls.lessons;
+  }
 
+  addLesson() {
+    const lesson = new FormGroup({
+      title: new FormControl('', [Validators.required]),
+      level: new FormControl('beginner', [Validators.required])
+    })
+
+    this.lessons.push(lesson);
+  }
+
+  removeLesson(index: number) {
+    this.lessons.removeAt(index)
+  }
 }

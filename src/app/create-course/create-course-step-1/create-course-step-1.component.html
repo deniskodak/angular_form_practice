@@ -1,0 +1,60 @@
+<div [formGroup]="form">
+
+  <!-- <address-form legend="address" formControlName="address" ></address-form> -->
+
+  <mat-form-field>
+    <input matInput placeholder="Course title" formControlName="title" />
+    <mat-hint align="end">{{ title.value.length }}/60</mat-hint>
+    <mat-error *ngIf="title.errors?.minlength">
+      The minimal length is
+      {{ title.errors.minlength.requiredLength }} but typed only
+      {{ title.errors.minlength.actualLength }}
+    </mat-error>
+    <mat-error *ngIf="title.errors?.maxlength">
+      The maximal length is
+      {{ title.errors.maxlength.requiredLength }} but typed
+      {{ title.errors.maxlength.actualLength }}
+    </mat-error>
+    <mat-error *ngIf="title.errors?.existedTitle">
+      The title is already been used
+    </mat-error>
+    <mat-error *ngIf="title.errors?.required">
+      The title is mandatory filed
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Release date"
+      [matDatepicker]="releaseDatePicker"
+      formControlName="releaseDateAt"
+    />
+    <mat-datepicker-toggle
+      matSuffix
+      [for]="releaseDatePicker"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #releaseDatePicker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-checkbox formControlName="downloadAllowed" color="primary"
+    >Download allowed?</mat-checkbox
+  >
+  <mat-form-field appearance="outline">
+    <textarea
+      matInput
+      placeholder="Description"
+      formControlName="longDescription"
+    ></textarea>
+    <mat-error *ngIf="title.errors?.required">
+      The description is mandatory filed
+    </mat-error>
+    <mat-hint align="end">{{ longDescription.value.length }}/10</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Select category" formControlName="category">
+        <mat-option *ngFor="let category of courseCategories$ | async" [value]="category.code">{{ category.description }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

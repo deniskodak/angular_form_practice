@@ -3,7 +3,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Course} from "../model/course";
+import {Course, CourseCategories} from "../model/course";
 import {map} from "rxjs/operators";
 import {Lesson} from "../model/lesson";
 
@@ -19,8 +19,8 @@ export class CoursesService {
         return this.http.get<Course>(`/api/courses/${courseId}`);
     }
 
-    findCourseCategories() {
-      return this.http.get(`/api/course-categories`)
+    findCourseCategories(): Observable<CourseCategories[]> {
+      return this.http.get<CourseCategories[]>(`/api/course-categories`)
         .pipe(
           map(res => res["categories"])
         );

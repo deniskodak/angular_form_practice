@@ -1,27 +1,75 @@
 <mat-card class="login-page">
   <mat-card-title>Login</mat-card-title>
   <mat-card-content>
-
     <form class="login-form data-form">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="email"
+          name="email"
+          ngModel
+          required
+          placeholder="Email"
+          minlength="3"
+          maxlength="28"
+          #email="ngModel"
+          pattern="[a-z]+"
+          email
+        />
+        <mat-error *ngIf="email.errors?.required"
+          >The email is required</mat-error
+        >
+        <mat-error *ngIf="email.errors?.pattern"
+          >Only lower cased letter are allowed</mat-error
+        >
+        <mat-error *ngIf="email.errors?.email"
+          >The email is not valid</mat-error
+        >
+        <mat-error *ngIf="email.errors?.minlength"
+          >The minimal length is
+          {{ email.errors?.minlength.requiredLength }} but typed only
+          {{ email.errors?.minlength.actualLength }}</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          type="password"
+          name="password"
+          placeholder="Password"
+          ngModel
+          passwordStrength
+          required
+          minlength="8"
+          #password="ngModel"
+        />
+        <mat-error
+          *ngIf="
+            password.errors
+              | onlyOneError : ['minlength', 'passwordStrength'] as error
+          "
+        >
+          <span *ngIf="error.passwordStrength"
+            >"Password should contain upper case and lower case characters and
+            numbers"</span
+          >
+          <span *ngIf="error.minlength">
+            The minimal length is
+            {{ error.minlength.requiredLength }} but typed only
+            {{ error.minlength.actualLength }}
+          </span>
 
-      <mat-form-field>
+        </mat-error>
 
-        <input matInput type="email" name="email"
-               placeholder="Email">
-
+        <mat-error *ngIf="password.errors?.required"
+          >The password is required</mat-error
+        >
       </mat-form-field>
 
-      <mat-form-field>
-
-        <input matInput type="password" placeholder="Password">
-
-      </mat-form-field>
-
-      <button mat-raised-button color="primary">
-        Login
-      </button>
-
+      <button mat-raised-button color="primary">Login</button>
+      <p>{{ email.value + " " + password.value }}</p>
     </form>
-
   </mat-card-content>
 </mat-card>
