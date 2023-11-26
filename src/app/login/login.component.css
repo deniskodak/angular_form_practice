@@ -10,9 +10,7 @@
   flex-direction: column;
 }
 
-.test-input {
-  border-bottom: 1px solid grey;
-  margin-bottom: 10px;
+.form-val {
+  margin-top: 10px;
 }
-
 

@@ -1,10 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from "@angular/forms";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { CoursesService } from "../../services/courses.service";
 import { Observable } from "rxjs";
 import { filter } from "rxjs/operators";
@@ -52,7 +47,6 @@ export class CreateCourseStep1Component implements OnInit {
 
     this.form.valueChanges.pipe(filter(() => this.form.valid)).subscribe({
       next: (form) => {
-        console.log("we are here");
         localStorage.setItem("STEP_1", JSON.stringify(form));
       },
     });

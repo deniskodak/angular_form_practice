@@ -26,34 +26,31 @@
           [formControl]="password"
         />
         <mat-error
-        *ngIf="
-          password.errors
-            | onlyOneError : ['minlength', 'passwordStrength'] as error
-        "
-      >
-        <span *ngIf="error.passwordStrength"
-          >Password should contain upper case and lower case characters and
-          numbers"</span
+          *ngIf="
+            password.errors
+              | onlyOneError : ['minlength', 'passwordStrength'] as error
+          "
         >
-        <span *ngIf="error.minlength">
-          The minimal length is
-          {{ error.minlength.requiredLength }} but typed only
-          {{ error.minlength.actualLength }}
-        </span>
+          <span *ngIf="error.passwordStrength"
+            >Password should contain upper case and lower case characters and
+            numbers"</span
+          >
+          <span *ngIf="error.minlength">
+            The minimal length is
+            {{ error.minlength.requiredLength }} but typed only
+            {{ error.minlength.actualLength }}
+          </span>
+        </mat-error>
 
-      </mat-error>
-
-      <mat-error *ngIf="password.errors?.required"
-        >The password is required</mat-error
-      >
+        <mat-error *ngIf="password.errors?.required"
+          >The password is required</mat-error
+        >
       </mat-form-field>
 
       <button mat-raised-button color="primary" [disabled]="!form.valid">
         Login
       </button>
-      <button mat-raised-button (click)="reset()">
-        Reset
-      </button>
+      <button mat-raised-button (click)="reset()">Reset</button>
     </form>
     <div class="form-val">
       {{ form.value | json }}

@@ -9,7 +9,7 @@ import {
   ValidationErrors,
   Validator,
 } from "@angular/forms";
-import { noop, of } from "rxjs";
+import { of } from "rxjs";
 
 @Component({
   selector: "file-upload",
