@@ -10,6 +10,7 @@ import {
   Validator,
 } from "@angular/forms";
 import { of } from "rxjs";
+import { environment } from "../../environments/environment";
 
 @Component({
   selector: "file-upload",
@@ -52,7 +53,7 @@ export class FileUploadComponent implements ControlValueAccessor, Validator {
       formData.append("thumbnail", files[0]);
 
       this.http
-        .post("/api/thumbnail-upload", formData, {
+        .post(`${environment.api}/api/thumbnail-upload`, formData, {
           reportProgress: true,
           observe: "events",
         })
