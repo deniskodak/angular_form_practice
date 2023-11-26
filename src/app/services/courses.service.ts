@@ -4,28 +4,29 @@ import { Observable } from "rxjs";
 import { Course, CourseCategories } from "../model/course";
 import { map } from "rxjs/operators";
 import { Lesson } from "../model/lesson";
+import { environment } from "../../environments/environment";
 
 @Injectable()
 export class CoursesService {
   constructor(private http: HttpClient) {}
 
   findCourseById(courseId: number): Observable<Course> {
-    return this.http.get<Course>(`/api/courses/${courseId}`);
+    return this.http.get<Course>(`${environment.api}/api/courses/${courseId}`);
   }
 
   findCourseCategories(): Observable<CourseCategories[]> {
     return this.http
-      .get<CourseCategories[]>(`/api/course-categories`)
+      .get<CourseCategories[]>(`${environment.api}/api/course-categories`)
       .pipe(map((res) => res["categories"]));
   }
 
   findAllCourses(): Observable<Course[]> {
-    return this.http.get("/api/courses").pipe(map((res) => res["payload"]));
+    return this.http.get(`${environment.api}/api/courses`).pipe(map((res) => res["payload"]));
   }
 
   findAllCourseLessons(courseId: number): Observable<Lesson[]> {
     return this.http
-      .get("/api/lessons", {
+      .get(`${environment.api}/api/lessons`, {
         params: new HttpParams()
           .set("courseId", courseId.toString())
           .set("pageNumber", "0")
@@ -42,7 +43,7 @@ export class CoursesService {
     pageSize = 3
   ): Observable<Lesson[]> {
     return this.http
-      .get("/api/lessons", {
+      .get(`${environment.api}/api/lessons`, {
         params: new HttpParams()
           .set("courseId", courseId.toString())
           .set("filter", filter)

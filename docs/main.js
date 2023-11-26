@@ -2175,9 +2175,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "CoursesService": () => (/* binding */ CoursesService)
 /* harmony export */ });
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ 3765);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs/operators */ 6942);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 6839);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ 3765);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ 6942);
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../environments/environment */ 2340);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 6839);
+
 
 
 
@@ -2187,28 +2189,28 @@ class CoursesService {
     this.http = http;
   }
   findCourseById(courseId) {
-    return this.http.get(`/api/courses/${courseId}`);
+    return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api}/api/courses/${courseId}`);
   }
   findCourseCategories() {
-    return this.http.get(`/api/course-categories`).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_0__.map)(res => res["categories"]));
+    return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api}/api/course-categories`).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_1__.map)(res => res["categories"]));
   }
   findAllCourses() {
-    return this.http.get("/api/courses").pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_0__.map)(res => res["payload"]));
+    return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api}/api/courses`).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_1__.map)(res => res["payload"]));
   }
   findAllCourseLessons(courseId) {
-    return this.http.get("/api/lessons", {
-      params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpParams().set("courseId", courseId.toString()).set("pageNumber", "0").set("pageSize", "1000")
-    }).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_0__.map)(res => res["payload"]));
+    return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api}/api/lessons`, {
+      params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpParams().set("courseId", courseId.toString()).set("pageNumber", "0").set("pageSize", "1000")
+    }).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_1__.map)(res => res["payload"]));
   }
   findLessons(courseId, filter = "", sortOrder = "asc", pageNumber = 0, pageSize = 3) {
-    return this.http.get("/api/lessons", {
-      params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpParams().set("courseId", courseId.toString()).set("filter", filter).set("sortOrder", sortOrder).set("pageNumber", pageNumber.toString()).set("pageSize", pageSize.toString())
-    }).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_0__.map)(res => res["payload"]));
+    return this.http.get(`${_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api}/api/lessons`, {
+      params: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpParams().set("courseId", courseId.toString()).set("filter", filter).set("sortOrder", sortOrder).set("pageNumber", pageNumber.toString()).set("pageSize", pageSize.toString())
+    }).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_1__.map)(res => res["payload"]));
   }
   static #_ = this.ɵfac = function CoursesService_Factory(t) {
-    return new (t || CoursesService)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpClient));
+    return new (t || CoursesService)(_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpClient));
   };
-  static #_2 = this.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjectable"]({
+  static #_2 = this.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineInjectable"]({
     token: CoursesService,
     factory: CoursesService.ɵfac
   });
@@ -2346,7 +2348,8 @@ __webpack_require__.r(__webpack_exports__);
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 const environment = {
-  production: false
+  production: false,
+  api: 'https://courses-7flg.onrender.com'
 };
 
 /***/ }),
